@@ -28,6 +28,16 @@ public class Task {
         this.title = title;
     }
 
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getDeadline() {
         return deadline;
     }
@@ -74,17 +84,22 @@ public class Task {
         return "Unknown";
     }
 
-    @Override
-    public String toString() {
+    private String getTagsToString() {
         StringBuilder tagsString = new StringBuilder();
         for (Tag tag : this.tags) {
             tagsString.append(tag.getLabel()).append(",");
         }
         if (tagsString.length() > 0)
-        tagsString = new StringBuilder(tagsString.substring(0, tagsString.length() - 1));
+            tagsString = new StringBuilder(tagsString.substring(0, tagsString.length() - 1));
+        return tagsString.toString();
+    }
+
+    @Override
+    public String toString() {
+
         return this.id + " Title: " + this.title + "\n" +
                 "Description: " + this.description + "\n" +
                 "Deadline: " + this.deadline + "\n" +
-                "Tags: " + tagsString + "\n";
+                "Tags: " + getTagsToString() + "\n";
     }
 }

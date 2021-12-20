@@ -15,8 +15,8 @@ public class TaskService {
     @Autowired
     private TasksRepository tasksRepository;
 
-    public List<Task> getTasksByTag(String tag) {
-        List<Task> taskList = this.tasksRepository.findAll();
+    public List<Task> getTasksByTag(String tag, String login) {
+        List<Task> taskList = this.tasksRepository.findAllByUserLogin(login);
         List<Task> resultList = new ArrayList<>();
         for (Task task : taskList) {
             for (Tag taskTag : task.getTags()) {
@@ -28,12 +28,8 @@ public class TaskService {
         return resultList;
     }
 
-    public Task getLastTask() {
-        List<Task> taskList = this.tasksRepository.findAll();
+    public Task getLastTask(String login) {
+        List<Task> taskList = this.tasksRepository.findAllByUserLogin(login);
         return taskList.get(taskList.size() - 1);
-    }
-
-    public List<Task> getTasks() {
-        return this.tasksRepository.findAll();
     }
 }

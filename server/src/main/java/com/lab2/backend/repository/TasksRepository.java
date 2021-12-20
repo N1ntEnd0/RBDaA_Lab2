@@ -9,4 +9,5 @@ import java.util.ArrayList;
 @Repository
 public interface TasksRepository extends CrudRepository<Task, Long> {
     ArrayList<Task> findAll();
+    ArrayList<Task> findAllByUserLogin(String login);
 }

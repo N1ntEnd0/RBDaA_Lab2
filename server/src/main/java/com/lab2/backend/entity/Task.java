@@ -1,11 +1,11 @@
 package com.lab2.backend.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "rbdip_task")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -17,13 +17,23 @@ public class Task {
 
     private Date deadline;
 
+    @JoinColumn(name = "user_login")
+    @ManyToOne
+    private User user;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "tag_id")
     private List<Tag> tags;
 
-    public Task() {
+    public Task() {}
+
+    public User getUser() {
+        return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

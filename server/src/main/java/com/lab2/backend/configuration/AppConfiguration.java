@@ -11,7 +11,7 @@ public class AppConfiguration {
 
     @Bean
     @Scope("prototype")
-    public Task getBook(){
+    public Task getTask(){
         return new Task();
     }
 
